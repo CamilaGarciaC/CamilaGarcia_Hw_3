@@ -9,7 +9,7 @@ data = np.genfromtxt("WDBC.dat",delimiter=",", usecols=(2,3,4,5,6,7,8,9,10,11,12
 def covarianza(x): 
 	size = np.shape(x)[1]
 	p = np.shape(x)[0] 
-	cov = np.zeros([d,d]) 
+	cov = np.zeros([size,size]) 
 	for i in range(size):
 	    for j in range(size):
 	        meani = np.mean(x[:,i])
