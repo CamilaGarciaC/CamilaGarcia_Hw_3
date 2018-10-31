@@ -1,19 +1,25 @@
-#Se importan los paquetes
-import matplotlib.pylab as plt
+#Se importan los paquetes de datos 
 import numpy as np
-import scipy as sp
-from scipy.fftpack import fft, fftfreq, ifft, fft2, ifft2
-from scipy import misc
-from skimage import io
-from matplotlib.colors import LogNorm
+import matplotlib.pyplot as plt 
+import math 
+from scipy.fftpack import fft2, fftshift, ifftshift, ifft2
+from scipy.signal import convolve2d
 
-#Se almacenan los datos en un arreglo nupy
-data =plt.imread("arbol.png")
-arr=np.array(data)
+#Se alamacena la imagen en un arreglo de numpy
+img=plt.imread('arbol.png')
+x, y = img.shape 
 
-imagen1=fft2(arr)
-imagen2=imagen1.copy()	
+#Usando los paquetes, se hace la transformada de la imagen
+transf=fft2(img)
+transf_s=fftshift(transf)
+transf_s_abs=abs(transf_s)
 
-plt.figure()
-plt.plot(abs(imagen1), norm=LogNorm(vmin=1))
+#Se le saca el logaritmo para que se vea con mayor claridad
+log_transf=np.log(transf_s_abs)
+
+#Se grafica la transformada y se guarda
+plt.imshow(log_transf)
+plt.title("Transformada de Fourier")
+plt.xlabel("Frecuencia")
+plt.ylabel("y(t)")
 plt.savefig("GarciaCamila_FT2D.pdf")
