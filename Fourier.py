@@ -52,3 +52,32 @@ plt.title("Transformada de Fourier de signal")
 plt.xlabel("Frecuencia")
 plt.ylabel("Transformada de Fourier")
 plt.savefig("GarciaCamila_TF.pdf")
+
+#Se imprime un mensaje que indica las principales frecuencias de la señal.
+princip=[]
+z = len (f_sig)
+for i in range (z):
+	if (fourier_DFT[i]>0.5):
+		princip.append(f_sig[i])
+
+print("Las frecuencias principales de la transformada de Fourier son", princip)
+
+#Se hace un filtro pasa bajos con frecuencia fc = 1000Hz
+filtro1=1000.0 
+fourier_DFT1=DFT(y_sig)
+
+#Se realiza la transformada inversa
+F_filtrado=[]
+for i in range(len(f_sig)):
+	if abs(f_sig[i]) > filtro1:F_filtrado.append(0)
+	else:
+		F_filtrado.append(fourier_DFT1[i])	 
+inversa1=ifft(np.array(F_filtrado))
+
+#Grafica de la señal filtrada
+plt.figure()
+plt.plot(x_sig, inversa1.real)
+plt.title("Funcion filtrada con fc=1000")
+plt.xlabel("tiempo")
+plt.ylabel("f filtrada")
+plt.savefig("GarciaCamila_filtrada.pdf")
