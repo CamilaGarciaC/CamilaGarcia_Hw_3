@@ -118,7 +118,7 @@ ax3.set_title("Transformada de la interpolacion cubica")
 plt.savefig('GarciaCamila_TF_interpola.pdf')
 
 #Se imprime un mensaje donde describa las diferencias encontradas entre la transformada de Fourier de la se˜nal original y las de las interpolaciones.
-#print("")
+print("La principal diferencia visible entre la señal orgiinal y las de interpolaciones es que las transformadas de las interpolaciones tienen mas ruido que la original, además la original alcanza a tener picos mas altos a comparacion de las otras en ciertos puntos, pero en general las graficas son demasiado parecidas.")
 
 #Se aplica el filtro pasabajos con una frecuencia de corte fc=1000 hz para la frecuencia original 
 
